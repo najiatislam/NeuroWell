@@ -1,1 +1,1 @@
-# 470_project
+# NeuroWell
