@@ -1,1 +1,1 @@
-# NeuroWell
+# Zenify
