@@ -1,48 +1,77 @@
-import React, { useContext } from 'react'
+import React from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Home from './pages/Home'
+import Doctors from './pages/Doctors'
 import Login from './pages/Login'
+import About from './pages/About'
+import Contact from './pages/Contact'
+import Pharmacy from './pages/Pharmacy';
+import LocalPharmacy from './pages/LocalPharmacy';
+import GlobalPharmacy from './pages/GlobalPharmacy';
+import MyProfile from './pages/MyProfile'
+import MyAppointments from './pages/MyAppointments'
+import Appointment from './pages/Appointment'
+import NAvbar from './components/NAvbar'
+import Footer from './components/Footer'
+import Wrapper from './components/Wraper'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { AdminContext } from './context/AdminContext';
-import Navbar from './components/Navbar';
-import Sidebar from './components/Sidebar';
-import { Route, Routes } from 'react-router-dom';
-import Dashboard from './pages/Admin/Dashboard';
-import AllApointmets from './pages/Admin/AllApointmets';
-import AddDoctor from './pages/Admin/AddDoctor';
-import DoctorsList from './pages/Admin/DoctorsList';
-//import ErrorBoundary from './components/ErrorBoundary';
+import PaymentSuccess from './pages/PaymentSuccess'
+import CommunityForum from './pages/CommunityForum'
+import GroupTherapy from './pages/GroupTherapy'
+import Medicine from './pages/Medicine'
+import HealthGoalsPage from './pages/HealthGoalsPage'
+
+
+
 
 const App = () => {
-
-  const {aToken} = useContext(AdminContext)
-
-  return aToken ?  (
-    <div className='bg-[#dde1eb]' >
-      
+  return (
+    <div className='mx-4 sm:mx[10%]'>
       <ToastContainer/>
-      <Navbar/>
-      <div className='flex items-start'>
-        <Sidebar/>
-        <Routes>
-          <Route path='/' element = {<></>}/>
-          <Route path='/admin-dashboard' element = {<Dashboard/>}/>
-          <Route path='/all-appointments' element = {<AllApointmets/>}/>
-          <Route path='/add-doctor' element = {<AddDoctor/>}/>
-          <Route path='/doctor-list' element = {<DoctorsList/>}/>
+      <NAvbar/>
+      <Wrapper>
+      
+      
+
+      <Routes>
+        <Route path='/' element= {<Home/>} />
+        <Route path='/doctors' element= {<Doctors/>} />
+        <Route path='/doctors/:speciality' element= {<Doctors/>} />
+        <Route path='/login' element= {<Login/>} />
+        <Route path='/about' element= {<About/>} />
+        <Route path='/contact' element= {<Contact/>} />
+        <Route path="/pharmacy" element={<Pharmacy />} />
+        <Route path="/pharmacy/local" element={<LocalPharmacy />} />
+        <Route path="/pharmacy/global" element={<GlobalPharmacy />} />
+        <Route path='/my-profile' element= {<MyProfile/>} />
+        <Route path="/health-goals" element={<HealthGoalsPage />} />
+        <Route path='/my-appointments' element= {<MyAppointments/>} />
+        <Route path='/appointment/:docId' element= {<Appointment/>} />
+        <Route path="/payment-success" element={<PaymentSuccess />} />
+        <Route path='/community-forum' element={<CommunityForum/>} />
+        <Route path='/group-therapy' element={<GroupTherapy/>} />
+        <Route path='/medicine' element={<Medicine/>} />
 
 
 
-        </Routes>
-      </div>
 
+
+
+
+
+        
+
+
+        
+      </Routes>
+      </Wrapper>
+      <Footer/>
+
+    
+      
     </div>
-  ): (
-    <>
-    <Login />
-    <ToastContainer/>
-    </>
   )
 }
-
 
 export default App
