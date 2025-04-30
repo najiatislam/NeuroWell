@@ -25,51 +25,51 @@ const Appointment = () => {
     setDocInfo(docInfo);
   };
 
-// from blackbox ai
-//   const getAvailableSlots = async () => {
-//     let allSlots = [];
-//     let today = new Date();
+  // from blackbox ai
+  //   const getAvailableSlots = async () => {
+  //     let allSlots = [];
+  //     let today = new Date();
 
-//     for (let i = 0; i < 7; i++) {
-//         let currentDate = new Date(today);
-//         currentDate.setDate(today.getDate() + i);
+  //     for (let i = 0; i < 7; i++) {
+  //         let currentDate = new Date(today);
+  //         currentDate.setDate(today.getDate() + i);
 
-//         let endTime = new Date();
-//         endTime.setDate(today.getDate() + i);
-//         endTime.setHours(21, 0, 0, 0);
+  //         let endTime = new Date();
+  //         endTime.setDate(today.getDate() + i);
+  //         endTime.setHours(21, 0, 0, 0);
 
-//         // Set the starting time for the first day
-//         if (i === 0) {
-//             // If the current time is before 10 AM, start at 10 AM
-//             if (currentDate.getHours() < 10) {
-//                 currentDate.setHours(10, 0, 0, 0);
-//             } else {
-//                 // If it's after 10 AM, round to the next half hour
-//                 currentDate.setMinutes(Math.ceil(currentDate.getMinutes() / 30) * 30);
-//             }
-//         } else {
-//             currentDate.setHours(10, 0, 0, 0); // For other days, start at 10 AM
-//         }
+  //         // Set the starting time for the first day
+  //         if (i === 0) {
+  //             // If the current time is before 10 AM, start at 10 AM
+  //             if (currentDate.getHours() < 10) {
+  //                 currentDate.setHours(10, 0, 0, 0);
+  //             } else {
+  //                 // If it's after 10 AM, round to the next half hour
+  //                 currentDate.setMinutes(Math.ceil(currentDate.getMinutes() / 30) * 30);
+  //             }
+  //         } else {
+  //             currentDate.setHours(10, 0, 0, 0); // For other days, start at 10 AM
+  //         }
 
-//         let timeSlots = [];
+  //         let timeSlots = [];
 
-//         while (currentDate < endTime) {
-//             let formattedTime = currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  //         while (currentDate < endTime) {
+  //             let formattedTime = currentDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-//             timeSlots.push({
-//                 datetime: new Date(currentDate),
-//                 time: formattedTime
-//             });
+  //             timeSlots.push({
+  //                 datetime: new Date(currentDate),
+  //                 time: formattedTime
+  //             });
 
-//             // Increment current time by 30 minutes
-//             currentDate.setMinutes(currentDate.getMinutes() + 30);
-//         }
+  //             // Increment current time by 30 minutes
+  //             currentDate.setMinutes(currentDate.getMinutes() + 30);
+  //         }
 
-//         allSlots.push(timeSlots);
-//     }
+  //         allSlots.push(timeSlots);
+  //     }
 
-//     setDocSlots(allSlots);
-// };
+  //     setDocSlots(allSlots);
+  // };
 
   const getAvailableSlots = async () => {
     let allSlots = [];
@@ -114,13 +114,13 @@ const Appointment = () => {
         const isSlotAvailable = docInfo.slots_booked[slotDate] && docInfo.slots_booked[slotDate].includes(slotTime) ? false : true
 
         if (isSlotAvailable) {
-        // add api slot to array
-        timeSlots.push({
-          datetime: new Date(currentDate),
-          time: formattedTime
-        })
+          // add api slot to array
+          timeSlots.push({
+            datetime: new Date(currentDate),
+            time: formattedTime
+          })
         }
-         
+
 
         // increment current time by 30 minutes
         currentDate.setMinutes(currentDate.getMinutes() + 30);
@@ -139,7 +139,7 @@ const Appointment = () => {
 
       toast.warn('Login to book appointment!')
       return navigate('/login')
-      
+
     }
 
     try {
@@ -147,29 +147,29 @@ const Appointment = () => {
       const date = docSlots[slotIndex][0].datetime
 
       let day = date.getDate()
-      let month = date.getMonth() + 1 
-      let year = date.getFullYear() 
+      let month = date.getMonth() + 1
+      let year = date.getFullYear()
 
       const slotDate = day + "_" + month + "_" + year
       // console.log(slotDate)
 
       //API call 
-      const {data} = await axios.post(backendUrl + "/api/user/book-appointment" , {docId, slotDate, slotTime},{headers:{token}})
+      const { data } = await axios.post(backendUrl + "/api/user/book-appointment", { docId, slotDate, slotTime }, { headers: { token } })
 
-      if(data.success) {
+      if (data.success) {
         toast.success(data.message)
         getDoctorsData()
         navigate('/my-appointments')
-      }else {
+      } else {
         toast.error(data.message)
       }
 
     } catch (error) {
       toast.error(error)
       console.log(error.message)
-      
+
     }
-    
+
   }
 
   useEffect(() => {
@@ -191,77 +191,107 @@ const Appointment = () => {
     setSlotTime(time);
   };
 
-  
 
 
-// doc info showcase
 
-  return  docInfo && (
+  // doc info showcase
+
+  return docInfo && (
     <div>
 
-        {/* ----Doc details */}
+      {/* ----Doc details */}
 
-        <div className='flex flex-col sm:flex-row gap-4'>
-          <div>
-            <img className='bg-slate-700 w-full sm:max-w-72 rounded-lg' src={docInfo.image} alt="" />
-          </div>
-          <div className='flex-1 border border-gray-400 rounded-lg p-8 py-7 bg-slate-300 mx-2 sm:mx-0 mt-[-80px] sm:mt-0'>
-
-            {/* -----Doc info */}
-
-            <p className='flex items-center gap-2 text-2xl font-medium text-gray-900'>
-              {docInfo.name} 
-              <img className='w-5' src={assets.verified_icon} alt="" />
-              </p>
-              <div className='flex items-center gap-2 text-sm mt-1 text-gray-700'>
-                <p>{docInfo.degree} - {docInfo.speciality}</p>
-                <button className='py-0.5 px-2 border text-xs rounded-full bg-slate-400 text-gray-900'>{docInfo.experience}</button>
-              </div>
-
-              {/* -----doc about */}
-
-              <div>
-                <p className='flex items-center gap-1 text-sm font-medium text-gray-900 mt-3'>About <img src={assets.info_icon} alt="" />
-                </p>
-                <p className='text-sm text-gray-800 max-w-[720px] mt-1'>{docInfo.about}</p>
-              </div>
-              <p className='text-gray-700 font-medium mt-4'>
-                Appointment Fee : <span className='text-gray-700'>{currencySymbol}{docInfo.fees}</span>
-              </p>
-          </div>
+      <div className='flex flex-col sm:flex-row gap-4'>
+        <div>
+          <img className='bg-slate-700 w-full sm:max-w-72 rounded-lg' src={docInfo.image} alt="" />
         </div>
+        <div className='flex-1 border border-gray-400 rounded-lg p-8 py-7 bg-slate-300 mx-2 sm:mx-0 mt-[-80px] sm:mt-0'>
 
-        {/* ----------booking slots--------- */}
-        <div className='sm:ml-72 sm:pl-4 mt-4 font-medium text-black'>
-          <p>Booking Slots</p>
-          <div className='flex gap-3 items-center w-full overflow-x-scroll mt-4'>
-            {
-            
-            docSlots.length && docSlots.map((item,index)=>(
-              <div onClick={()=> setSlotIndex(index)} className={`text-center py-6 min-w-16 rounded-full cursor-pointer ${slotIndex === index ? 'bg-slate-700 text-white' : 'border border-teal-800'}`} key={index}>
+          {/* -----Doc info */}
+
+          <p className='flex items-center gap-2 text-2xl font-medium text-gray-900'>
+            {docInfo.name}
+            <img className='w-5' src={assets.verified_icon} alt="" />
+            {/* Hardcoded 4.5 Stars */}
+            <span className='flex items-center text-sm'>
+              <span className='text-gray-700'>{4.5}</span>
+              {/* Full Stars */}
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.868 1.464 8.826-7.4-3.868-7.4 3.868 1.464-8.826-6.064-5.868 8.332-1.151z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.868 1.464 8.826-7.4-3.868-7.4 3.868 1.464-8.826-6.064-5.868 8.332-1.151z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.868 1.464 8.826-7.4-3.868-7.4 3.868 1.464-8.826-6.064-5.868 8.332-1.151z" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.868 1.464 8.826-7.4-3.868-7.4 3.868 1.464-8.826-6.064-5.868 8.332-1.151z" />
+              </svg>
+              {/* Half Star */}
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 24 24">
+                <defs>
+                  <linearGradient id="halfStarGradient">
+                    <stop offset="50%" stopColor="currentColor" /> {/* Yellow on the left */}
+                    <stop offset="50%" stopColor="white" /> {/* White on the right */}
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M12 .587l3.668 7.568 8.332 1.151-6.064 5.868 1.464 8.826-7.4-3.868-7.4 3.868 1.464-8.826-6.064-5.868 8.332-1.151z"
+                  fill="url(#halfStarGradient)"
+                />
+              </svg>
+            </span>
+          </p>
+          <div className='flex items-center gap-2 text-sm mt-1 text-gray-700'>
+            <p>{docInfo.degree} - {docInfo.speciality}</p>
+            <button className='py-0.5 px-2 border text-xs rounded-full bg-slate-400 text-gray-900'>{docInfo.experience}</button>
+          </div>
+
+          {/* -----doc about */}
+
+          <div>
+            <p className='flex items-center gap-1 text-sm font-medium text-gray-900 mt-3'>About <img src={assets.info_icon} alt="" />
+            </p>
+            <p className='text-sm text-gray-800 max-w-[720px] mt-1'>{docInfo.about}</p>
+          </div>
+          <p className='text-gray-700 font-medium mt-4'>
+            Appointment Fee : <span className='text-gray-700'>{currencySymbol}{docInfo.fees}</span>
+          </p>
+        </div>
+      </div>
+
+      {/* ----------booking slots--------- */}
+      <div className='sm:ml-72 sm:pl-4 mt-4 font-medium text-black'>
+        <p>Booking Slots</p>
+        <div className='flex gap-3 items-center w-full overflow-x-scroll mt-4'>
+          {
+
+            docSlots.length && docSlots.map((item, index) => (
+              <div onClick={() => setSlotIndex(index)} className={`text-center py-6 min-w-16 rounded-full cursor-pointer ${slotIndex === index ? 'bg-slate-700 text-white' : 'border border-teal-800'}`} key={index}>
                 <p>{item[0] && daysOfWeek[item[0].datetime.getDay()]}</p>
                 <p>{item[0] && item[0].datetime.getDate()}</p>
 
               </div>
             ))
-            
-            }
-          </div>
 
-        
-          <div className='flex flex-items-center gap-3 w-fll overflow-x-scroll mt-4'>
-            {docSlots.length && docSlots[slotIndex].map((item,index)=> (
-              <p onClick={()=> setSlotTime(item.time)} className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${item.time === slotTime ? 'bg-slate-700 text-white' : 'text-black border border-teal-800'}`} key={index}>
-                {item.time.toLowerCase()}
-              </p>
-              ))}
+          }
+        </div>
 
-          </div>
-          <button onClick={bookAppointment} className='bg-slate-700 text-white text-sm font-light px-14 py-3 rounded-full my-6'>Book an appointment</button>
+
+        <div className='flex flex-items-center gap-3 w-fll overflow-x-scroll mt-4'>
+          {docSlots.length && docSlots[slotIndex].map((item, index) => (
+            <p onClick={() => setSlotTime(item.time)} className={`text-sm font-light flex-shrink-0 px-5 py-2 rounded-full cursor-pointer ${item.time === slotTime ? 'bg-slate-700 text-white' : 'text-black border border-teal-800'}`} key={index}>
+              {item.time.toLowerCase()}
+            </p>
+          ))}
 
         </div>
-        {/* Listing related docs */}
-        <RelatedDoctors docId={docId} speciality={docInfo.speciality} />
+        <button onClick={bookAppointment} className='bg-slate-700 text-white text-sm font-light px-14 py-3 rounded-full my-6'>Book an appointment</button>
+
+      </div>
+      {/* Listing related docs */}
+      <RelatedDoctors docId={docId} speciality={docInfo.speciality} />
     </div>
   )
 };
