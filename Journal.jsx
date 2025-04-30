@@ -1,7 +1,27 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { assets } from '../assets/assets';
 
 const Journal = () => {
+  const navigate = useNavigate();
+
+  const handleReadMore = (type) => {
+    console.log('Navigating to:', type); // Add this for debugging
+    switch(type) {
+      case 'journal':
+        navigate('/read-journal');
+        break;
+      case 'article':
+        navigate('/read-article');
+        break;
+      case 'study':
+        navigate('/read-study');
+        break;
+      default:
+        navigate('/');
+    }
+  };
+
   return (
     <div className='flex flex-col bg-yellow-300 rounded-lg px-6 md:px-10 lg:px-20 py-10 md:py-16'>
 
@@ -30,9 +50,12 @@ const Journal = () => {
           <p className='text-gray-600 text-sm mb-6'>
             Exploring innovative treatments for heart diseases and patient care methodologies.
           </p>
-          <a href="#" className='flex items-center gap-2 text-yellow-600 text-sm font-medium mt-auto'>
+          <button 
+            onClick={() => handleReadMore('journal')}
+            className='flex items-center gap-2 text-yellow-600 text-sm font-medium mt-auto hover:text-yellow-700'
+          >
             Read Journal <img className='w-3' src={assets.arrow_icon} alt="" />
-          </a>
+          </button>
         </div>
 
         {/* News Card 2 */}
@@ -47,9 +70,12 @@ const Journal = () => {
           <p className='text-gray-600 text-sm mb-6'>
             Recognized for groundbreaking work in patient care and medical technology.
           </p>
-          <a href="#" className='flex items-center gap-2 text-yellow-600 text-sm font-medium mt-auto'>
+          <button 
+            onClick={() => handleReadMore('article')}
+            className='flex items-center gap-2 text-yellow-600 text-sm font-medium mt-auto hover:text-yellow-700'
+          >
             Read Article <img className='w-3' src={assets.arrow_icon} alt="" />
-          </a>
+          </button>
         </div>
 
         {/* Journal Card 3 */}
@@ -64,9 +90,12 @@ const Journal = () => {
           <p className='text-gray-600 text-sm mb-6'>
             New findings in child healthcare and developmental medicine practices.
           </p>
-          <a href="#" className='flex items-center gap-2 text-yellow-600 text-sm font-medium mt-auto'>
+          <button 
+            onClick={() => handleReadMore('study')}
+            className='flex items-center gap-2 text-yellow-600 text-sm font-medium mt-auto hover:text-yellow-700'
+          >
             Read Study <img className='w-3' src={assets.arrow_icon} alt="" />
-          </a>
+          </button>
         </div>
 
       </div>
@@ -77,9 +106,12 @@ const Journal = () => {
           <img className='w-28' src={assets.arrow_icon} alt="" />
           <p>You are welcome, please explore our resources</p>
         </div>
-        <a href="#journals" className='flex items-center gap-2 bg-white px-8 py-3 rounded-full text-gray-600 text-sm hover:scale-105 transition-all duration-300'>
+        <button 
+          onClick={() => handleReadMore('journal')}
+          className='flex items-center gap-2 bg-white px-8 py-3 rounded-full text-gray-600 text-sm hover:scale-105 transition-all duration-300'
+        >
           View All Journals <img className='w-3' src={assets.arrow_icon} alt="" />
-        </a>
+        </button>
       </div>
 
     </div>
