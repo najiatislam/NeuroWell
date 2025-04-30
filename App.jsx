@@ -15,16 +15,16 @@ import CommunityForum from './pages/CommunityForum'
 import GroupTherapy from './pages/GroupTherapy'
 import Medicine from './pages/Medicine'
 
-
+import EmergencyContacts from './pages/EmergencyContacts'
+import ReadJournal from './pages/ReadJournal'
+import ReadArticle from './pages/ReadArticle'
+import ReadStudy from './pages/ReadStudy'
 
 const App = () => {
   return (
     <div className='mx-4 sm:mx[10%]'>
       <NAvbar/>
       <Wrapper>
-      
-      
-
       <Routes>
         <Route path='/' element= {<Home/>} />
         <Route path='/doctors' element= {<Doctors/>} />
@@ -35,29 +35,17 @@ const App = () => {
         <Route path='/my-profile' element= {<MyProfile/>} />
         <Route path='/my-appointments' element= {<MyAppointments/>} />
         <Route path='/appointment/:docId' element= {<Appointment/>} />
-  
         <Route path='/community-forum' element={<CommunityForum/>} />
         <Route path='/group-therapy' element={<GroupTherapy/>} />
         <Route path='/medicine' element={<Medicine/>} />
 
-
-
-
-
-
-
-
-
-        
-
-
-        
+        <Route path='/emergency-contacts' element={<EmergencyContacts />} />
+        <Route path="/read-journal" element={<ReadJournal />} />
+        <Route path="/read-article" element={<ReadArticle />} />
+        <Route path="/read-study" element={<ReadStudy />} />
       </Routes>
       </Wrapper>
       <Footer/>
-
-    
-      
     </div>
   )
 }
