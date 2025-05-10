@@ -566,6 +566,16 @@ const MyAppointments = () => {
             </div>
             <div></div>
             <div className="flex flex-col gap-2 justify-end">
+
+              {!item.cancelled && (
+                <button
+                  onClick={() => window.location.href = `/join-session/${item._id}`}
+                  className="text-sm text-stone-800 text-center sm:min-w-48 py-2 border rounded hover:bg-blue-400 hover:text-white transition-all duration-300"
+                >
+                  Join Session
+                </button>
+              )}
+
               {!item.cancelled && !item.paid && (
                 <button
                   disabled={!!paymentClientSecret}
