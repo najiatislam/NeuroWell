@@ -1,0 +1,28 @@
+{
+  "home": "হোম",
+  "all_doctors": "সব ডাক্তার",
+  "about": "আমাদের সম্পর্কে",
+  "contact": "যোগাযোগ",
+  "profile": "আমার প্রোফাইল",
+  "appointments": "অ্যাপয়েন্টমেন্ট",
+  "logout": "প্রস্থান",
+  "create_account": "অ্যাকাউন্ট তৈরি করুন",
+  "medicine_reminder": "ঔষধের অনুস্মারক",
+  "stripe_not_loaded": "স্ট্রাইপ এখনো লোড হয়নি। অনুগ্রহ করে আবার চেষ্টা করুন।",
+  "payment_failed": "পেমেন্ট ব্যর্থ হয়েছে। আবার চেষ্টা করুন।",
+  "payment_successful": "পেমেন্ট সফল!",
+  "pay_now": "এখনই পরিশোধ করুন",
+  "my_appointments": "আমার অ্যাপয়েন্টমেন্ট",
+  "address": "ঠিকানা",
+  "date_time": "তারিখ এবং সময়",
+  "pay_online": "অনলাইনে পরিশোধ করুন",
+  "payment_done": "পেমেন্ট সম্পন্ন হয়েছে",
+  "cancel_appointment": "অ্যাপয়েন্টমেন্ট বাতিল করুন",
+  "appointment_cancelled": "অ্যাপয়েন্টমেন্ট বাতিল হয়েছে",
+  "complete_payment": "আপনার পেমেন্ট সম্পন্ন করুন",
+  "failed_initiating_payment": "পেমেন্ট শুরুর চেষ্টা ব্যর্থ হয়েছে।"
+  
+
+}
+
+

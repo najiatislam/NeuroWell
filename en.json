@@ -1,0 +1,23 @@
+{
+  "home": "HOME",
+  "all_doctors": "ALL DOCTORS",
+  "about": "ABOUT",
+  "contact": "CONTACT",
+  "profile": {
+    "contactInfo": "Contact Information",
+    "basicInfo": "Basic Information",
+    "familyHealthRecord": "Family Health Issue Record",
+    "saveButton": "Save information",
+    "editButton": "Edit",
+    "addFamilyMember": "+ Add Family Member",
+    "exerciseSuggestions": "Exercise Suggestions",
+    "noExercises": "No exercises found for this goal."
+  },
+  "appointments": "Appointments",
+  "logout": "Logout",
+  "create_account": "Create Account",
+  "medicine_reminder": "Medicine Reminder"
+}
+
+
+

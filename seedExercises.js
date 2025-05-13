@@ -10,36 +10,24 @@ await Exercise.deleteMany();
 
 await Exercise.insertMany([
   {
-    name: 'Yoga',
+    name: 'Cardio Workout',
     goalType: 'weight_loss',
-    description: 'Improves posture and burns calories.',
+    description: 'A great way to burn calories and improve cardiovascular health.',
+    steps: ['Warm-up', 'Jog for 20 minutes', 'Cool down'],
+  },
+  {
+    name: 'Yoga for Stress Relief',
+    goalType: 'stress',
+    description: 'Yoga practices to help calm the mind and reduce stress.',
     steps: ['Mountain pose', 'Downward dog', 'Child’s pose'],
   },
   {
-    name: 'Cardio',
-    goalType: 'weight_loss',
-    description: 'Heart-pumping exercise for weight loss.',
-    steps: ['Jogging', 'Jumping jacks', 'Cycling'],
-  },
-  {
-    name: 'Meditation',
+    name: 'Breathing Exercises for Calm',
     goalType: 'stress',
-    description: 'Calms your mind and body.',
-    steps: ['Sit quietly', 'Focus on breath'],
-  },
-  {
-    name: 'Breathing Exercises',
-    goalType: 'stress',
-    description: 'Helps relieve tension.',
-    steps: ['4-7-8 breathing', 'Box breathing'],
-  },
-  {
-    name: 'Pilates',
-    goalType: 'increased_flexibility',
-    description: 'Core strengthening and flexibility.',
-    steps: ['Hundred', 'Leg circles', 'Spine stretch'],
+    description: 'Deep breathing exercises to calm your nerves.',
+    steps: ['Inhale for 4 seconds', 'Hold for 7 seconds', 'Exhale for 8 seconds'],
   },
 ]);
 
-console.log('✅ Exercise data seeded');
+console.log('✅ Exercises seeded');
 process.exit();
