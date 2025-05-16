@@ -1,0 +1,8 @@
+<svg width="217" height="46" viewBox="0 0 217 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="217" height="46" rx="20" fill="#2C3E50"/>
+  <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Helvetica" font-size="30" font-weight="bold" fill="#ECF0F1" style="letter-spacing: 2px;">ZENIFY</text>
+  <text x="50%" y="85%" dominant-baseline="middle" text-anchor="middle" font-family="Helvetica" font-size="15" fill="#ECF0F1" style="letter-spacing: 0.5px;">Care</text>
+  <circle cx="20" cy="23" r="5" fill="#ECF0F1"/>
+  <circle cx="197" cy="23" r="5" fill="#ECF0F1"/>
+  <text x="50%" y="95%" dominant-baseline="middle" text-anchor="middle" font-family="Helvetica" font-size="15" fill="#ECF0F1" style="letter-spacing: 0.5px;">Dashboard Panel</text>
+</svg>
